@@ -3,7 +3,7 @@ import { Section, SectionHeading } from './ui/Section'
 import { Reveal, RevealGroup, RevealItem } from './ui/Reveal'
 import { Counter } from './ui/Counter'
 import { bio, education, stats } from '../data/portfolio'
-import photo from '../assets/photo.jpg'
+import photo from '../assets/photo_cutout.webp'
 
 export function About() {
   return (
@@ -40,13 +40,23 @@ export function About() {
             {/* offset accent frame */}
             <div className="absolute -inset-0 translate-x-3 translate-y-3 rounded-2xl border border-[var(--color-accent)]/40" />
             <div className="glow-border group relative overflow-hidden rounded-2xl bg-[var(--color-surface)]">
-              <img
-                src={photo}
-                alt="Afsal V N — professional portrait"
-                className="aspect-[4/5] w-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.04]"
-                loading="lazy"
+              {/* themed backdrop: circuit grid + glow halo behind subject */}
+              <div className="absolute inset-0 circuit-grid opacity-70" />
+              <div
+                className="absolute inset-0"
+                style={{
+                  background:
+                    'radial-gradient(ellipse 75% 55% at 50% 34%, rgba(79,157,255,0.30), transparent 68%), radial-gradient(ellipse 55% 40% at 82% 88%, rgba(57,255,158,0.14), transparent 62%)',
+                }}
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[var(--color-bg)]/50 via-transparent to-transparent" />
+              <div className="relative flex aspect-[4/5] items-end justify-center pt-6">
+                <img
+                  src={photo}
+                  alt="Afsal V N — professional portrait"
+                  className="h-full w-auto max-w-full object-contain object-bottom drop-shadow-[0_18px_36px_rgba(0,0,0,0.6)] transition-transform duration-700 group-hover:scale-[1.04]"
+                />
+              </div>
+              <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-[var(--color-bg)]/70 to-transparent" />
             </div>
           </Reveal>
 
